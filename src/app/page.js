@@ -30,11 +30,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen text-white bg-[#050608] font-sans flex flex-col items-center justify-start p-4 md:p-8">
-      
-      {/* CONTENEDOR CENTRAL DE LA MARCA */}
       <div className="w-full max-w-4xl flex flex-col items-center">
         
-        {/* Encabezado */}
         <header className="text-center mt-20 mb-12 w-full">
           <div className="text-[10px] font-black tracking-[0.5em] text-blue-500 uppercase mb-3">
             NEXTGEN CREATORS ECOSYSTEM • RASTREO MULTILINGÜE ACTIVO
@@ -47,7 +44,6 @@ export default function Home() {
           </p>
         </header>
 
-        {/* BOTÓN ÚNICO DE BÚSQUEDA */}
         <div className="w-full flex justify-center mb-16">
           <button
             onClick={handleFetchTrends}
@@ -58,10 +54,7 @@ export default function Home() {
           </button>
         </div>
 
-        {/* DISPLAY DINÁMICO DE DATOS */}
         <div className="w-full space-y-6">
-          
-          {/* Animación Morada de Carga */}
           {loading && (
             <div className="flex flex-col items-center justify-center py-20 gap-4 bg-[#0d0e12]/40 border border-purple-900/20 rounded-2xl">
               <div className="w-10 h-10 border-4 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
@@ -71,7 +64,6 @@ export default function Home() {
             </div>
           )}
 
-          {/* Estado en reposo */}
           {!hasSearched && !loading && (
             <div className="text-center py-16 bg-[#0d0e12]/20 border border-dashed border-gray-900 rounded-3xl max-w-md mx-auto">
               <p className="text-xs text-gray-600 max-w-xs mx-auto leading-relaxed">
@@ -80,62 +72,38 @@ export default function Home() {
             </div>
           )}
 
-          {/* Tarjetas de Resultados */}
           {hasSearched && !loading && results.map((drama, idx) => (
-            <div 
-              key={idx} 
-              className="bg-[#0d0e12] border border-gray-800/40 hover:border-purple-500/30 rounded-2xl p-6 transition-all shadow-xl grid grid-cols-1 md:grid-cols-4 gap-6 transform hover:-translate-y-0.5 duration-200"
-            >
-              {/* Métricas e Idioma */}
+            <div key={idx} className="bg-[#0d0e12] border border-gray-800/40 hover:border-purple-500/30 rounded-2xl p-6 transition-all shadow-xl grid grid-cols-1 md:grid-cols-4 gap-6">
               <div className="border-b md:border-b-0 md:border-r border-gray-800/40 pb-4 md:pb-0 md:pr-4 flex flex-col justify-between gap-4">
                 <div>
                   <div className="text-[9px] uppercase font-black text-purple-400 tracking-wider mb-1">Métrica de Tráfico</div>
-                  <div className="text-xs font-black text-white bg-[#050608] px-2.5 py-1.5 rounded-lg border border-purple-900/20 w-fit">
-                    {drama.viralRate}
-                  </div>
+                  <div className="text-xs font-black text-white bg-[#050608] px-2.5 py-1.5 rounded-lg border border-purple-900/20 w-fit">{drama.viralRate}</div>
                 </div>
-
                 <div>
                   <div className="text-[9px] uppercase font-black text-emerald-400 tracking-wider mb-1">Acceso Detectado</div>
-                  <div className="text-xs font-black text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/20 w-fit">
-                    {drama.freeEpisodes}
-                  </div>
+                  <div className="text-xs font-black text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/20 w-fit">{drama.freeEpisodes}</div>
                 </div>
-
                 <div>
                   <div className="text-[9px] uppercase font-black text-blue-400 tracking-wider mb-1">Idioma de Origen</div>
                   <div className="text-xs font-bold text-gray-300">{drama.lang}</div>
                 </div>
               </div>
 
-              {/* Trama y Análisis */}
               <div className="md:col-span-2 flex flex-col justify-center">
-                <h3 className="text-xl font-black text-white tracking-tight">
-                  {drama.title}
-                </h3>
+                <h3 className="text-xl font-black text-white tracking-tight">{drama.title}</h3>
                 <p className="text-gray-400 text-xs leading-relaxed mt-3 bg-[#050608] p-3 rounded-xl border border-gray-900/60">
                   <strong className="text-purple-400 block text-[9px] uppercase tracking-wider mb-1">Análisis del Argumento:</strong>
                   {drama.plot}
                 </p>
               </div>
 
-              {/* Botón de Salida Externa */}
               <div className="flex flex-col justify-center items-stretch pt-4 md:pt-0 md:pl-4 border-t md:border-t-0 md:border-l border-gray-800/40">
                 <div className="text-center mb-3">
                   <span className="text-[9px] text-gray-500 block uppercase font-bold tracking-wider">Alojado en:</span>
                   <span className="text-xs font-black text-gray-300 block mt-0.5">{drama.platformName}</span>
                 </div>
-                
-                <a 
-                  href={drama.directUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="bg-purple-600 hover:bg-purple-700 text-white font-black py-3 px-4 rounded-xl text-xs text-center transition-all shadow-md flex items-center justify-center gap-2 no-underline"
-                >
+                <a href={drama.directUrl} target="_blank" rel="noopener noreferrer" className="bg-purple-600 hover:bg-purple-700 text-white font-black py-3 px-4 rounded-xl text-xs text-center transition-all shadow-md flex items-center justify-center gap-2 no-underline">
                   <span>Visitar Página Externa</span>
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
                 </a>
               </div>
             </div>
